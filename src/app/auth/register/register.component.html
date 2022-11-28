@@ -1,1 +1,169 @@
-<p>register works!</p>
+<div
+    class="flex items-center justify-center w-screen h-screen bg-[url('/assets/wave.svg')] bg-no-repeat bg-cover overflow-auto pt-52 pb-20">
+    <div
+        class="w-3/4 p-8 overflow-auto rounded shadow-md bg-opacity-95 bg-slate-900 md:w-1/2 lg:w-1/3 animate__animated animate__fadeInLeft">
+        <h1 class="mb-4 text-4xl font-medium text-center text-white">
+            Registrarse
+        </h1>
+
+        <div *ngFor="let text of array" class="text-white">{{ text }}</div>
+        <form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="onSubmit()"
+            autocomplete="off">
+
+            <div class="grid gap-4 mb-3 md:lg:grid-rows xl:grid-cols-2">
+                <div class="group">
+                    <label
+                        class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                        for="firstName">
+                        Nombre *
+                    </label>
+                    <input
+                        class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                        id="firstName" type="text" formControlName="firstName"
+                        placeholder="Ingrese sus nombres">
+                    <div
+                        *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched || form.submitted)">
+                        <small *ngIf="firstName?.errors?.['required']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo nombre es obligatorio
+                        </small>
+                        <small *ngIf="firstName?.errors?.['minlength']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo debe tener minimo 3 caracteres
+                        </small>
+                    </div>
+                </div>
+                <div class="group">
+                    <label
+                        class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                        for="lastName">
+                        Apellidos *
+                    </label>
+                    <input
+                        class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                        id="lastName" type="text" formControlName="lastName"
+                        placeholder="Ingrese sus apellidos">
+                    <div
+                        *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched || form.submitted)">
+                        <small *ngIf="lastName?.errors?.['required']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo nombre es obligatorio
+                        </small>
+                        <small *ngIf="lastName?.errors?.['minlength']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo debe tener minimo 3 caracteres
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 group">
+                <label
+                    class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                    for="email">
+                    Correo electrónico *
+                </label>
+                <input
+                    class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                    id="email" type="text" formControlName="email"
+                    placeholder="Ingrese correo electrónico">
+                <div
+                    *ngIf="email?.invalid && (email?.dirty || email?.touched || form.submitted)">
+                    <small *ngIf="email?.errors?.['required']"
+                        class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                        El campo nombre es obligatorio
+                    </small>
+                    <small *ngIf="email?.errors?.['email']"
+                        class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                        El formato del correo es incorrecto
+                    </small>
+                </div>
+            </div>
+            <div class="grid gap-4 mb-4 md:lg:grid-rows xl:grid-cols-2 ">
+                <div class="group">
+                    <label
+                        class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                        for="password">
+                        Contraseña *
+                    </label>
+                    <input
+                        class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                        id="password" type="password" formControlName="password"
+                        placeholder="Ingrese su contraseña">
+                    <div
+                        *ngIf="password?.invalid && (password?.dirty || password?.touched || form.submitted)">
+                        <small *ngIf="password?.errors?.['required']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo nombre es obligatorio
+                        </small>
+                        <small *ngIf="password?.errors?.['minlength']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo debe tener minimo 3 caracteres
+                        </small>
+                    </div>
+                </div>
+                <div class="group">
+                    <label
+                        class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                        for="passwordConfirmed">
+                        Confirmar contraseña *
+                    </label>
+                    <input
+                        class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                        id="passwordConfirmed" type="password"
+                        formControlName="passwordConfirmed"
+                        placeholder="Ingrese su contraseña">
+                    <div
+                        *ngIf="passwordConfirmed?.invalid && (passwordConfirmed?.dirty || passwordConfirmed?.touched || form.submitted)">
+                        <small *ngIf="passwordConfirmed?.errors?.['required']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo nombre es obligatorio
+                        </small>
+                        <small *ngIf="passwordConfirmed?.errors?.['minlength']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo debe tener minimo 3 caracteres
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="grid mb-10 md:lg:grid-rows xl:grid-cols-2">
+                <div class="group">
+
+                    <label
+                        class="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-purple-400"
+                        for="username">
+                        Usuario *
+                    </label>
+                    <input
+                        class="w-full px-3 py-2 leading-tight text-gray-300 border border-white border-opacity-50 rounded shadow appearance-none bg-slate-900 focus:outline-none focus:border-purple-600 focus:shadow-outline"
+                        id="username" type="text"
+                        placeholder="Ingrese su usuario"
+                        formControlName="username" />
+                    <div
+                        *ngIf="username?.invalid && (username?.dirty || username?.touched || form.submitted)">
+                        <small *ngIf="username?.errors?.['required']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo nombre es obligatorio
+                        </small>
+                        <small *ngIf="username?.errors?.['minlength']"
+                            class="mt-3 text-sm font-thin text-red-500 animate__animated animate__fadeIn animate__faster">
+                            El campo debe tener minimo 3 caracteres
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <button type="submit"
+                    class="py-2 font-medium text-white bg-purple-700 rounded hover:bg-purple-600 focus:outline-none focus:shadow-outline">
+                    Registrar
+                </button>
+                <a class="text-sm font-medium text-purple-500 text- hover:text-purple-600 mt-7"
+                    [routerLink]="['/autenticacion/login']">
+                    <span class="align-bottom material-symbols-outlined">
+                        navigate_before
+                    </span>
+                    Register
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
