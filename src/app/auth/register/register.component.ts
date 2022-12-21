@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import swal from 'sweetalert2';
@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-  array: string[] = ['a', 'b', 'c'];
-
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.fb.group<RegisterForm>({
     firstName: this.fb.nonNullable.control('', {
       validators: [Validators.required, Validators.minLength(3)],
@@ -21,21 +19,13 @@ export class RegisterComponent {
       validators: [Validators.required, Validators.minLength(3)],
     }),
     username: this.fb.nonNullable.control('', {
-      validators: [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(10),
-      ],
+      validators: [Validators.required, Validators.minLength(3)],
     }),
     email: this.fb.nonNullable.control('', {
       validators: [Validators.required, Validators.email],
     }),
     password: this.fb.nonNullable.control('', {
-      validators: [
-        Validators.required,
-        Validators.minLength(9),
-        Validators.maxLength(20),
-      ],
+      validators: [Validators.required, Validators.minLength(3)],
     }),
     passwordConfirmed: this.fb.nonNullable.control('', {
       validators: [Validators.required, Validators.minLength(3)],
@@ -47,6 +37,8 @@ export class RegisterComponent {
     public authService: AuthService,
     public router: Router
   ) {}
+
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.registerForm.invalid) return;

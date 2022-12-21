@@ -1,0 +1,56 @@
+<div [ngClass]="closed ? 'w-12 sm:w-18 ':'w-40 sm:w-64'"
+    class="relative h-screen pt-5 text-white duration-300 bg-slate-900">
+    <button (click)="toggleSideBar()"
+        [ngClass]="closed ? 'left-[80%]':'left-[95%]'"
+        class="absolute w-8 h-8 border-2 rounded-full cursor-pointer bg-slate-900 bottom-1/2">
+        <span
+            class="ml-0.5 mt-1 text-xs material-symbols-outlined duration-300">
+            {{ closed ? 'arrow_forward_ios': 'arrow_back_ios' }}
+        </span>
+    </button>
+    <div class="flex flex-col items-center">
+        <div
+            class="w-8 h-8 text-lg leading-8 text-center rounded-full bg-slate-400">
+            {{ user.firstName.slice(0,1) | uppercase }}
+        </div>
+        <ul *ngIf="!closed"
+            class="mt-5 text-center transition-all duration-500">
+            <li>{{ user.firstName }} {{ user.lastName }}</li>
+            <li>{{ user.email }}</li>
+        </ul>
+    </div>
+    <hr class="m-5 border-white">
+    <ul>
+        <li [routerLink]="['perfil']"
+            class="flex items-center p-2 text-sm cursor-pointer hover:bg-gray-600 gap-x-4">
+            <span class="material-symbols-outlined">
+                manage_accounts
+            </span>
+            <span class="duration-300"
+                [ngClass]="{ 'scale-0': closed }">Perfil</span>
+        </li>
+        <li [routerLink]="['productos']"
+            class="flex items-center p-2 text-sm cursor-pointer hover:bg-gray-600 gap-x-4">
+            <span class="material-symbols-outlined">
+                shopping_bag
+            </span>
+            <span class="duration-300"
+                [ngClass]="{ 'scale-0': closed }">productos</span>
+        </li>
+    </ul>
+    <div class="absolute w-full bottom-3">
+        <hr class="m-5 border-white">
+        <div class="flex justify-between mx-3">
+            <img *ngIf="!closed" src="/assets/favicon.png" alt="IAS icon"
+                class="w-auto h-8">
+
+            <button class="text-lg text-center rounded-md" (click)="logout()">
+                <span
+                    class="duration-200 hover:text-red-600 material-symbols-outlined"
+                    [ngClass]="closed ? 'w-5 h-5 leading-5':'w-6 h-6 leading-6'">
+                    logout
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
