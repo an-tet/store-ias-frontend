@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { Product } from '../models/Product.model';
 import { products } from '../mock/get-all-products.mock';
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let productService: ProductService;
   let httpTestingController: HttpTestingController;
 
